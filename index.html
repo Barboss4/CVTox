@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Site oficial do Curso de Verão de Toxicologia — CVTox." />
+  <title>CVTox — Curso de Verão de Toxicologia</title>
+  <link rel="icon" href="assets/img/cvtox-logo.png" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="data/site.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body data-page="home" data-base="">
+  <div data-site-header></div>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Próxima edição</p>
+          <h1><strong data-event-edition></strong><span data-event-title></span></h1>
+          <p data-event-description></p>
+          <div class="hero-meta">
+            <span class="pill">📅 <span data-event-date></span></span>
+            <span class="pill">📍 <span data-event-location></span></span>
+          </div>
+          <div class="actions">
+            <a class="btn btn-primary" data-registration-cta href="#">Inscrições</a>
+            <a class="btn btn-ghost" href="programacao.html">Ver programação</a>
+          </div>
+        </div>
+        <div class="hero-mark" aria-hidden="true">
+          <div class="logo-orbit"><img src="assets/img/cvtox-logo.png" alt="" /></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">O evento</p>
+            <h2>O que você vai encontrar no CVTox</h2>
+            <p>Uma estrutura pensada para apresentar rapidamente o evento e facilitar a navegação entre as informações mais importantes.</p>
+          </div>
+        </div>
+        <div class="features-grid" data-highlights></div>
+      </div>
+    </section>
+
+    <section class="section section-soft">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Convidados</p>
+            <h2>Alguns nomes da próxima edição</h2>
+            <p>Conheça alguns dos pesquisadores e profissionais convidados para a próxima edição do CVTox.</p>
+          </div>
+          <a class="btn" style="border-color: var(--border); color: var(--navy-950)" href="palestrantes.html">Ver todos</a>
+        </div>
+        <div class="speaker-carousel" data-speaker-carousel>
+          <div class="speaker-carousel-viewport" data-carousel-viewport tabindex="0" aria-label="Carrossel de convidados">
+            <div class="speaker-carousel-track" data-speakers></div>
+          </div>
+          <div class="carousel-nav">
+            <span class="carousel-hint">Arraste para o lado ou use as setas</span>
+            <div class="carousel-controls" aria-label="Controles do carrossel">
+              <button class="carousel-btn" type="button" data-carousel-prev aria-label="Convidado anterior">←</button>
+              <span class="carousel-status" data-carousel-status aria-live="polite"></span>
+              <button class="carousel-btn" type="button" data-carousel-next aria-label="Próximo convidado">→</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="cta-band">
+          <div>
+            <h2>Quer participar da próxima edição?</h2>
+            <p>A página de inscrições pode receber o link do formulário, Sympla, Even3 ou outra plataforma quando estiver disponível.</p>
+          </div>
+          <a class="btn btn-primary" data-registration-cta href="#">Inscrições</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-site-footer></div>
+</body>
+</html>
