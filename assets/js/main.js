@@ -87,6 +87,15 @@
   setText("[data-event-location]", data.event.location);
   setText("[data-event-city]", data.event.city);
   setText("[data-event-description]", data.event.description);
+  setText(
+  "[data-registration-price]",
+  data.event.registrationPrice
+);
+
+setText(
+  "[data-registration-price-note]",
+  data.event.registrationPriceNote
+);
 
   document.querySelectorAll("[data-registration-cta]").forEach(cta => {
     cta.textContent = data.event.registrationLabel;
