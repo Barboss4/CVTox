@@ -105,18 +105,51 @@
   }
 
   const speakers = document.querySelector("[data-speakers]");
+
   if (speakers) {
-    speakers.innerHTML = data.speakers.map(s => `
+
+    const speakersToShow =
+      page === "home"
+        ? data.speakers
+        : data.speakers;
+
+    speakers.innerHTML = speakersToShow.map(s => `
       <article class="speaker-card">
+
         <div class="speaker-photo ${s.photo ? "has-photo" : ""}">
-          ${s.photo ? `<img src="${esc(s.photo)}" alt="Foto de ${esc(s.name)}" />` : `<span aria-hidden="true">👤</span>`}
+          ${
+            s.photo
+              ? `<img src="${esc(s.photo)}" alt="Foto de ${esc(s.name)}" />`
+              : `<span aria-hidden="true">👤</span>`
+          }
         </div>
+
         <div class="speaker-content">
+
           <p class="eyebrow">${esc(s.role)}</p>
-          <h3>${esc(s.name)}</h3>
+        <h3>
+          ${
+            s.url
+              ? `
+                <a
+                  href="${esc(s.url)}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="speaker-name-link"
+                >
+                  ${esc(s.name)}
+                </a>
+              `
+              : esc(s.name)
+          }
+        </h3>
+
           <p>${esc(s.talk)}</p>
+
         </div>
-      </article>`).join("");
+
+      </article>
+    `).join("");
   }
 
   // Na home, todos os palestrantes ficam disponíveis em um carrossel horizontal.
@@ -160,22 +193,64 @@
     updateCarousel();
   }
 
-  const schedule = document.querySelector("[data-schedule]");
-  if (schedule) {
-    schedule.innerHTML = data.schedule.map(day => `
-      <section class="schedule-day">
-        <div class="schedule-heading">
-          <div><span class="eyebrow">${esc(day.date)}</span><h2>${esc(day.day)}</h2></div>
+const schedule = document.querySelector("[data-schedule]");
+
+if (schedule) {
+
+  schedule.innerHTML = data.schedule.map(day => `
+
+    <section class="schedule-day">
+
+      <div class="schedule-heading">
+
+        <div>
+          <span class="eyebrow">${esc(day.date)}</span>
+          <h2>${esc(day.day)}</h2>
         </div>
-        <div class="schedule-list">
-          ${day.items.map(item => `
-            <div class="schedule-item">
-              <time>${esc(item.time)}</time>
-              <div><strong>${esc(item.title)}</strong><span>${esc(item.type)}</span></div>
-            </div>`).join("")}
-        </div>
-      </section>`).join("");
-  }
+
+      </div>
+
+      <div class="schedule-list">
+
+        ${day.items.map(item => `
+
+          <div class="schedule-item">
+
+            <time>${esc(item.time)}</time>
+
+            <div class="schedule-content">
+
+              <strong>${esc(item.title)}</strong>
+
+              ${
+                item.speaker
+                  ? `<p class="schedule-speaker">${esc(item.speaker)}</p>`
+                  : ""
+              }
+
+              ${
+                item.institution
+                  ? `<p class="schedule-institution">${esc(item.institution)}</p>`
+                  : ""
+              }
+
+              <span class="schedule-type">
+                ${esc(item.type)}
+              </span>
+
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </section>
+
+  `).join("");
+
+}
 
   const committee = document.querySelector("[data-committee]");
   if (committee) {
@@ -191,6 +266,100 @@
       </article>`
     ).join("");
   }
+
+// ==========================================================
+// PATROCINADORES E APOIADORES
+// ==========================================================
+
+const sponsors = document.querySelector("[data-sponsors]");
+
+if (sponsors && Array.isArray(data.sponsors)) {
+
+  const groupedSponsors = data.sponsors.reduce((groups, sponsor) => {
+
+    const category = sponsor.category || "Apoio";
+
+    if (!groups[category]) {
+      groups[category] = [];
+    }
+
+    groups[category].push(sponsor);
+
+    return groups;
+
+  }, {});
+
+
+  sponsors.innerHTML = Object.entries(groupedSponsors)
+    .map(([category, items]) => `
+
+      <section class="sponsor-group">
+
+        <h3>${esc(category)}</h3>
+
+        <div class="sponsor-grid">
+
+          ${items.map(sponsor => {
+
+            const content = `
+              <div class="sponsor-logo-wrap">
+
+                ${
+                  sponsor.logo
+                    ? `
+                      <img
+                        src="${esc(sponsor.logo)}"
+                        alt="${esc(sponsor.name)}"
+                        loading="lazy"
+                      >
+                    `
+                    : `
+                      <span class="sponsor-placeholder">
+                        ${esc(sponsor.name)}
+                      </span>
+                    `
+                }
+
+              </div>
+
+              <p class="sponsor-title">
+                ${esc(sponsor.name)}
+              </p>
+            `;
+
+
+            if (sponsor.url) {
+
+              return `
+                <a
+                  class="sponsor-card"
+                  href="${esc(sponsor.url)}"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="${esc(sponsor.name)}"
+                >
+                  ${content}
+                </a>
+              `;
+
+            }
+
+
+            return `
+              <div class="sponsor-card">
+                ${content}
+              </div>
+            `;
+
+          }).join("")}
+
+        </div>
+
+      </section>
+
+    `).join("");
+}
+
 
   setText("[data-venue-name]", data.venue.name);
   setText("[data-venue-address]", data.venue.address);
