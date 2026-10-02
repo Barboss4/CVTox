@@ -55,7 +55,7 @@
             <a href="${esc(data.contact.instagramUrl)}" target="_blank" rel="noopener">${esc(data.contact.instagram)}</a>
           </div>
         </div>
-        <div class="container footer-bottom">© <span data-year></span> CVTox. Site estático para GitHub Pages.</div>
+        <div class="container footer-bottom">© <span data-year></span>  CVTox — Curso de Verão de Toxicologia.</div>
       </footer>`;
   }
 
