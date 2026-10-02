@@ -562,3 +562,62 @@ a.sponsor-card:hover {
 
   color: var(--muted);
 }
+
+/* ==========================================================
+   BOTÃO VOLTAR AO TOPO
+   ========================================================== */
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 100;
+
+  width: 46px;
+  height: 46px;
+
+  display: grid;
+  place-items: center;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--navy-950);
+  color: var(--white);
+
+  font-size: 1.3rem;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  box-shadow: 0 8px 24px rgba(7, 28, 83, 0.22);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  background: var(--green-dark);
+}
+
+@media (max-width: 680px) {
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+
+    width: 42px;
+    height: 42px;
+  }
+}
