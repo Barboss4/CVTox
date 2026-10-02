@@ -381,3 +381,26 @@ if (sponsors && Array.isArray(data.sponsors)) {
   const instaLink = document.querySelector("[data-contact-instagram-link]");
   if (instaLink) instaLink.href = data.contact.instagramUrl;
 })();
+
+
+// ==========================================================
+
+const backToTop = document.createElement("button");
+
+backToTop.className = "back-to-top";
+backToTop.type = "button";
+backToTop.setAttribute("aria-label", "Voltar ao topo");
+backToTop.innerHTML = "↑";
+
+document.body.appendChild(backToTop);
+
+window.addEventListener("scroll", () => {
+  backToTop.classList.toggle("show", window.scrollY > 400);
+});
+
+backToTop.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
