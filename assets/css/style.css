@@ -621,3 +621,69 @@ a.sponsor-card:hover {
     height: 42px;
   }
 }
+
+/* ==========================================================
+   AJUSTE FINAL - PARCEIROS CENTRALIZADOS
+   ========================================================== */
+
+/* Centraliza o título: REALIZAÇÃO / PATROCÍNIO / APOIO */
+.sponsor-group h3 {
+  text-align: center;
+}
+
+
+/* Desktop: máximo de 4 por linha */
+.sponsor-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  justify-content: center;
+  align-items: flex-start;
+
+  gap: 24px;
+
+  max-width: 912px;
+  margin: 0 auto;
+}
+
+.sponsor-card {
+  width: 210px;
+  flex: 0 0 210px;
+}
+
+
+/* Tablet: máximo de 3 por linha */
+@media (max-width: 980px) {
+
+  .sponsor-grid {
+    max-width: 618px;
+  }
+
+  .sponsor-card {
+    width: 190px;
+    flex: 0 0 190px;
+  }
+
+}
+
+
+/* Celular: 2 por linha */
+@media (max-width: 680px) {
+
+  .sponsor-grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 18px;
+
+    max-width: none;
+  }
+
+  .sponsor-card {
+    width: calc(50% - 9px);
+    flex: 0 0 calc(50% - 9px);
+  }
+
+}
